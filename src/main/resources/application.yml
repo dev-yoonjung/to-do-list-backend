@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: local
+
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+
+management:
+  endpoints:
+    web:
+      base-path: /api
+  endpoint:
+    health:
+      show-details: always
