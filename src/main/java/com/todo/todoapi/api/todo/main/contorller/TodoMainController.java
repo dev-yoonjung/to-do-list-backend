@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,6 +20,12 @@ public class TodoMainController {
     public ResponseEntity<TodoMainDto> register(@RequestBody @Valid TodoMainDto dto) {
         TodoMainDto registered = todoMainService.register(dto);
         return ResponseEntity.ok(registered);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<TodoMainDto>> findAll() {
+        List<TodoMainDto> list = todoMainService.findAll();
+        return ResponseEntity.ok(list);
     }
 
 }

@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -15,6 +17,10 @@ public class TodoService {
 
     public Todo save(Todo todo) {
         return todoRepository.save(todo);
+    }
+
+    public Iterable<Todo> findAll() {
+        return todoRepository.findAll();
     }
 
 }

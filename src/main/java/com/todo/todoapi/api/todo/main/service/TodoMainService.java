@@ -7,6 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -22,4 +25,11 @@ public class TodoMainService {
         return TodoMainDto.of(saved);
     }
 
+    public List<TodoMainDto> findAll() {
+        List<TodoMainDto> list = new ArrayList<>();
+        todoService.findAll()
+                .forEach(todo -> list.add(TodoMainDto.of(todo)));
+
+        return list;
+    }
 }
