@@ -33,9 +33,7 @@ public class Todo extends BaseEntity {
 
     public void update(Todo todo) {
         this.name = todo.getName();
+        this.completed = todo.getCompleted();
     }
 
-    public void switchCompleted(Boolean completed) {
-        this.completed = completed;
-    }
 }

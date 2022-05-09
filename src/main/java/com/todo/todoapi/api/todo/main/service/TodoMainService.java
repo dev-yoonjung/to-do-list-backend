@@ -32,4 +32,12 @@ public class TodoMainService {
 
         return list;
     }
+
+    @Transactional
+    public TodoMainDto update(TodoMainDto dto) {
+        Todo target = todoService.findById(dto.getId());
+        target.update(dto.toEntity());
+
+        return TodoMainDto.of(target);
+    }
 }
