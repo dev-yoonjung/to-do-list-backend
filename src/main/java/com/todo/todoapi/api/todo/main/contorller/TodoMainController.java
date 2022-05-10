@@ -22,12 +22,14 @@ public class TodoMainController {
     @PostMapping
     public ResponseEntity<TodoMainDto> register(@RequestBody @Valid TodoMainDto dto) {
         TodoMainDto registered = todoMainService.register(dto);
+
         return ResponseEntity.ok(registered);
     }
 
     @GetMapping
     public ResponseEntity<List<TodoMainDto>> findAll() {
         List<TodoMainDto> list = todoMainService.findAll();
+
         return ResponseEntity.ok(list);
     }
 
@@ -37,7 +39,15 @@ public class TodoMainController {
             throw new BusinessException(ErrorCode.NOT_VALID_TODO_ID);
         }
         TodoMainDto updated = todoMainService.update(dto);
+
         return ResponseEntity.ok(updated);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<TodoMainDto> delete(@PathVariable Long id) {
+        TodoMainDto deleted = todoMainService.delete(id);
+
+        return ResponseEntity.ok(deleted);
     }
 
 }

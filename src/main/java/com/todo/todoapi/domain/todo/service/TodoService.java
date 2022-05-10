@@ -27,4 +27,9 @@ public class TodoService {
         return todoRepository.findById(id)
                 .orElseThrow(() -> new BusinessException(ErrorCode.TODO_NOT_EXISTS));
     }
+
+    public void delete(Todo todo) {
+        todoRepository.delete(todo);
+    }
+
 }

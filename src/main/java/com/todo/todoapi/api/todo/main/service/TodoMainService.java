@@ -40,4 +40,12 @@ public class TodoMainService {
 
         return TodoMainDto.of(target);
     }
+
+    @Transactional
+    public TodoMainDto delete(Long id) {
+        Todo target = todoService.findById(id);
+        todoService.delete(target);
+
+        return TodoMainDto.of(target);
+    }
 }
