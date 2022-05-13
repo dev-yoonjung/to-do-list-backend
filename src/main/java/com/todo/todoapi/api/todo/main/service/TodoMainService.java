@@ -1,6 +1,7 @@
 package com.todo.todoapi.api.todo.main.service;
 
-import com.todo.todoapi.api.todo.main.dto.TodoMainDto;
+import com.todo.todoapi.api.todo.main.dto.RegisterTodoDto;
+import com.todo.todoapi.api.todo.main.dto.TodoDto;
 import com.todo.todoapi.domain.todo.entity.Todo;
 import com.todo.todoapi.domain.todo.service.TodoService;
 import lombok.RequiredArgsConstructor;
@@ -18,34 +19,34 @@ public class TodoMainService {
     private final TodoService todoService;
 
     @Transactional
-    public TodoMainDto register(TodoMainDto dto) {
+    public TodoDto register(RegisterTodoDto dto) {
         Todo todo = Todo.create(dto.toEntity());
         Todo saved = todoService.save(todo);
 
-        return TodoMainDto.of(saved);
+        return TodoDto.of(saved);
     }
 
-    public List<TodoMainDto> findAll() {
-        List<TodoMainDto> list = new ArrayList<>();
+    public List<TodoDto> findAll() {
+        List<TodoDto> list = new ArrayList<>();
         todoService.findAll()
-                .forEach(todo -> list.add(TodoMainDto.of(todo)));
+                .forEach(todo -> list.add(TodoDto.of(todo)));
 
         return list;
     }
 
     @Transactional
-    public TodoMainDto update(TodoMainDto dto) {
+    public TodoDto update(TodoDto dto) {
         Todo target = todoService.findById(dto.getId());
         target.update(dto.toEntity());
 
-        return TodoMainDto.of(target);
+        return TodoDto.of(target);
     }
 
     @Transactional
-    public TodoMainDto delete(Long id) {
+    public TodoDto delete(Long id) {
         Todo target = todoService.findById(id);
         todoService.delete(target);
 
-        return TodoMainDto.of(target);
+        return TodoDto.of(target);
     }
 }

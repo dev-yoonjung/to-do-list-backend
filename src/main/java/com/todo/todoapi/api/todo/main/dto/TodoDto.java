@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @Builder
-public class TodoMainDto {
+public class TodoDto {
 
     @NotNull(message = "Todo ID is a required input value.")
     private Long id;
@@ -24,8 +24,8 @@ public class TodoMainDto {
     @NotNull(message = "Todo completed is a required input value.")
     private Boolean completed;
 
-    public static TodoMainDto of (Todo todo) {
-        return TodoMainDto.builder()
+    public static TodoDto of (Todo todo) {
+        return TodoDto.builder()
                 .id(todo.getId())
                 .name(todo.getName())
                 .completed(todo.getCompleted())

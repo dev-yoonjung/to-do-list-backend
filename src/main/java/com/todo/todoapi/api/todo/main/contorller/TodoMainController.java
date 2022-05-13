@@ -1,6 +1,7 @@
 package com.todo.todoapi.api.todo.main.contorller;
 
-import com.todo.todoapi.api.todo.main.dto.TodoMainDto;
+import com.todo.todoapi.api.todo.main.dto.RegisterTodoDto;
+import com.todo.todoapi.api.todo.main.dto.TodoDto;
 import com.todo.todoapi.api.todo.main.service.TodoMainService;
 import com.todo.todoapi.global.error.exception.BusinessException;
 import com.todo.todoapi.global.error.exception.ErrorCode;
@@ -20,32 +21,32 @@ public class TodoMainController {
     private final TodoMainService todoMainService;
 
     @PostMapping
-    public ResponseEntity<TodoMainDto> register(@RequestBody @Valid TodoMainDto dto) {
-        TodoMainDto registered = todoMainService.register(dto);
+    public ResponseEntity<TodoDto> register(@RequestBody @Valid RegisterTodoDto dto) {
+        TodoDto registered = todoMainService.register(dto);
 
         return ResponseEntity.ok(registered);
     }
 
     @GetMapping
-    public ResponseEntity<List<TodoMainDto>> findAll() {
-        List<TodoMainDto> list = todoMainService.findAll();
+    public ResponseEntity<List<TodoDto>> findAll() {
+        List<TodoDto> list = todoMainService.findAll();
 
         return ResponseEntity.ok(list);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TodoMainDto> update(@RequestBody @Valid TodoMainDto dto, @PathVariable Long id) {
+    public ResponseEntity<TodoDto> update(@RequestBody @Valid TodoDto dto, @PathVariable Long id) {
         if (!Objects.equals(dto.getId(), id)) {
             throw new BusinessException(ErrorCode.NOT_VALID_TODO_ID);
         }
-        TodoMainDto updated = todoMainService.update(dto);
+        TodoDto updated = todoMainService.update(dto);
 
         return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<TodoMainDto> delete(@PathVariable Long id) {
-        TodoMainDto deleted = todoMainService.delete(id);
+    public ResponseEntity<TodoDto> delete(@PathVariable Long id) {
+        TodoDto deleted = todoMainService.delete(id);
 
         return ResponseEntity.ok(deleted);
     }
